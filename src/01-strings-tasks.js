@@ -298,6 +298,7 @@ function getCardId(value) {
       return i;
     }
   }
+  return 'not found';
 }
 
 
