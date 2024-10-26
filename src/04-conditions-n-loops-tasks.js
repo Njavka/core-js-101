@@ -365,15 +365,14 @@ function isBracketsBalanced(str) {
  */
 function toNaryString(num, n) {
   let result = '';
-  const number = num;
-
-  let currentNum = number;
+  let currentNum = num;
 
   while (currentNum > 0) {
     const digit = currentNum % n;
     result = digit.toString() + result;
     currentNum = Math.floor(currentNum / n);
   }
+  return result;
 }
 
 
@@ -393,7 +392,6 @@ function getCommonDirectoryPath(paths) {
   if (paths.length === 0) return '';
   const splitPaths = paths.map((path) => path.split('/').filter(Boolean));
   const allStartWithSlash = paths.every((path) => path.startsWith('/'));
-
   const commonPath = [];
 
   for (let i = 0; i < splitPaths[0].length; i += 1) {
@@ -432,8 +430,22 @@ function getCommonDirectoryPath(paths) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const rowsM1 = m1.length;
+  const columnsM1 = m1[0].length;
+  const columnsM2 = m2[0].length;
+
+  const result = Array.from({ length: rowsM1 }, () => Array(columnsM2).fill(0));
+
+  for (let i = 0; i < rowsM1; i += 1) {
+    for (let j = 0; j < columnsM2; j += 1) {
+      for (let k = 0; k < columnsM1; k += 1) {
+        result[i][j] += m1[i][k] * m2[k][j];
+      }
+    }
+  }
+
+  return result;
 }
 
 
